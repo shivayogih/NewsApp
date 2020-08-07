@@ -22,11 +22,14 @@ import com.springr.newsapplication.models.Article
 import com.springr.newsapplication.ui.NewsActivity
 import com.springr.newsapplication.ui.NewsViewModel
 import com.springr.newsapplication.util.AppAlerts
+import com.springr.newsapplication.util.DateUtils
 import com.springr.newsapplication.util.PermissionUtils
 import kotlinx.android.synthetic.main.fragment_article.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ArticleFragment : Fragment(R.layout.fragment_article),EasyPermissions.PermissionCallbacks {
 
@@ -75,7 +78,9 @@ class ArticleFragment : Fragment(R.layout.fragment_article),EasyPermissions.Perm
         tvSource.text = article.author
         tvTitle.text = article.title
         tvDescription.text = article.description
-        tvPublishedAt.text = article.publishedAt
+
+        article.publishedAt?.let {  tvPublishedAt.text = DateUtils.convertToCalendar(it) }
+      //  tvPublishedAt.text = article.publishedAt
     }
 
 
